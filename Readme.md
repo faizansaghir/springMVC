@@ -60,3 +60,27 @@ Repository to track development and details about Spring MVC
        </html>
     ```
    *param is value present in Model which contains form data associated to the request*
+5. Binding Request Parameter  
+   Instead of passing ```HttpServletRequest``` object to controller method and then reading parameter from it,  
+   we can use ```@RequestParam``` which will extract the parameter with given name and pass it as parameter to our function.  
+   ```java
+        @Controller
+        public class HelloWorldController {
+            // ...
+            @RequestMapping("/processFormVersionThree")
+            public String perocessFormVersionThree(
+                @RequestParam(name = "studentName") String name,
+                Model model
+            ) {
+                name = name.toUpperCase();
+
+                String message = "Hey my friend! "+name;
+
+                model.addAttribute("message", message);
+
+                return "helloworld";
+            }
+            // ...
+        }
+   ```
+   
