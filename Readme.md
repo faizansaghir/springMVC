@@ -83,4 +83,9 @@ Repository to track development and details about Spring MVC
             // ...
         }
    ```
-   
+6. @GetMapping and @PostMapping  
+   By default ```@RequestMapping``` handles all type of request like GET, POST etc.  
+   To limit the mapping to only use a certain method, we can specify using ```@RequestMapping("URI", method=MethodType.[type])```  
+   Instead of specifying attribute in ```@RequestMapping``` , we can use annotations like ```@GetMapping``` and ```@PostMapping```.  
+   **GET**: Good for debugging, bookmarking or sending URL, but has limitations on data length  
+   **POST**: Can not bookmark or send URL, but has no limitation on data length and can also handle binary data (files, etc.)  
