@@ -28,19 +28,24 @@ Repository to track development and details about Spring MVC
    We can pass the parameter of Model if we want to use model in our controller method.  
    Similarly, we can pass HttpServletRequest parameter to our controller method if we want to get information related to the request.
    ```java
-      @RequestMapping("/processFormVersionTwo")
-      public String letsShoutDude(HttpServletRequest request, Model model){
+     @Controller
+     public class HelloWorldController {
+        // ...
+        @RequestMapping("/processFormVersionTwo")
+        public String letsShoutDude(HttpServletRequest request, Model model){
 
-        String name = request.getParameter("studentName");
+            String name = request.getParameter("studentName");
 
-        name = name.toUpperCase();
+            name = name.toUpperCase();
 
-        String message = "Yo! "+name;
+            String message = "Yo! "+name;
 
-        model.addAttribute("message", message);
+            model.addAttribute("message", message);
 
-        return "helloworld";
-      }
+            return "helloworld";
+        }
+        // ...
+     }
    ```
    The data in the model can be access using ```${modelAttributeName}```  
    ```html
