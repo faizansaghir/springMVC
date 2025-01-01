@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang="en-US" xmins:th="http://www.thymelead.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmins="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hello World - Input Form</title>
+</head>
+<body>
+    <form th:action="@{/process-form}" method="GET">
+
+        <input type="text" name="studentName" placeholder="What's your name?"/>
+        <input type="submit"/>
+
+    </form>
+</body>
+</html>
