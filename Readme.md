@@ -112,6 +112,9 @@ Repository to track development and details about Spring MVC
        @Value("${countries}")
        private List<String> countries;
    
+       @Value("${languages}")
+       private List<String> languages;
+   
        @GetMapping("/showStudentForm")
        public String showForm(Model model) {
    
@@ -120,6 +123,8 @@ Repository to track development and details about Spring MVC
            model.addAttribute("bindingStudentObject", student);
    
            model.addAttribute("countries", countries);
+   
+           model.addAttribute("languages", languages);
    
            return "student-form";
        }
@@ -159,6 +164,12 @@ Repository to track development and details about Spring MVC
                    <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
    
                </select>
+   
+               <br><br>
+   
+               Favourite Programming Language
+   
+               <input th:each="language : ${languages}" type="radio" th:field="*{favouriteLanguage}" th:value="${language}" th:text="${language}">
    
                <br><br>
    
