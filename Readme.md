@@ -102,29 +102,35 @@ Repository to track development and details about Spring MVC
    - The fields of form also bind to an attribute in the instance using ```th:field=${bindingObjectName.field}```  
      or ```th:field=*{field}``` in ```<input>```.
    - When the form is submitted and flow passes to another controller function, it can accept the instance of object of 
-     Class bond to Form as parameter using ```@ModelAttribute("bindingObjectName") Class object```
+     Class bond to Form as parameter using ```@ModelAttribute("bindingObjectName") Class object```  
 
+   *Note: We can iterate over an attribute in Model which is a collection using ```th:each={obj : ${objs}``` of the tag*
    ```java
    @Controller
    public class StudentController {
    
-        @GetMapping("/showStudentForm")
-        public String showForm(Model model) {
+       @Value("${countries}")
+       private List<String> countries;
+   
+       @GetMapping("/showStudentForm")
+       public String showForm(Model model) {
    
            Student student = new Student();
    
            model.addAttribute("bindingStudentObject", student);
    
-           return "student-form";
-        }
+           model.addAttribute("countries", countries);
    
-        @PostMapping("/processStudentForm")
-        public String processForm(@ModelAttribute("bindingStudentObject") Student student) {
+           return "student-form";
+       }
+   
+       @PostMapping("/processStudentForm")
+       public String processForm(@ModelAttribute("bindingStudentObject") Student student) {
    
            System.out.println("Student: "+student.getFirstName()+" "+student.getLastName());
    
            return "student-confirmation";
-        }
+       }
    
    }
    ```
@@ -146,8 +152,32 @@ Repository to track development and details about Spring MVC
    
                <br><br>
    
+               Country:
+   
+               <select th:field="*{country}">
+   
+                   <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
+   
+               </select>
+   
+               <br><br>
+   
                <input type="submit" value="Submit" />
            </form>
        </body>
    </html>
+   ```
+8. **@Value**  
+   Annotation to tell Spring to populate the field using values mentioned in ```application.properties``` file.  
+   ```properties
+   countries=Brazil, France,Germany,India,Mexico,Spain,United States
+   ```
+   ```java
+   @Controller
+   public class StudentController {
+       // ...
+       @Value("${countries}")
+       private List<String> countries;
+       // ...
+   } 
    ```
