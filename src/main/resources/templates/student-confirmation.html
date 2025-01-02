@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html lang="en-US" xmins:th="http://www.thymelead.org" xmlns:xmins="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Student Confirmation</title>
+    </head>
+    <body>
+        <h3>Student Confirmation</h3>
+
+        The student is confirmed: <span th:text="${bindingStudentObject.firstName} + ' ' + ${bindingStudentObject.lastName}"></span>
+    </body>
+</html>
