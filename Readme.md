@@ -108,35 +108,18 @@ Repository to track development and details about Spring MVC
    ```java
    @Controller
    public class StudentController {
-   
+       // ...
        @Value("${countries}")
        private List<String> countries;
-   
-       @Value("${languages}")
-       private List<String> languages;
-   
+       // ...   
        @GetMapping("/showStudentForm")
        public String showForm(Model model) {
-   
-           Student student = new Student();
-   
-           model.addAttribute("bindingStudentObject", student);
-   
+           // ...
            model.addAttribute("countries", countries);
-   
-           model.addAttribute("languages", languages);
-   
+           // ...
            return "student-form";
        }
-   
-       @PostMapping("/processStudentForm")
-       public String processForm(@ModelAttribute("bindingStudentObject") Student student) {
-   
-           System.out.println("Student: "+student.getFirstName()+" "+student.getLastName());
-   
-           return "student-confirmation";
-       }
-   
+       // ...
    }
    ```
    ```html
@@ -150,29 +133,12 @@ Repository to track development and details about Spring MVC
            <h3>Student Registration Form</h3>
            <form th:action="@{/processStudentForm}" th:object="${bindingStudentObject}" method="POST">
                First name: <input type="text" th:field="${bindingStudentObject.firstName}" />
-   
-               <br><br>
-   
-               Last name: <input type="text" th:field="*{lastName}" />
-   
-               <br><br>
-   
+               <!-- ... -->
                Country:
-   
                <select th:field="*{country}">
-   
                    <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
-   
                </select>
-   
-               <br><br>
-   
-               Favourite Programming Language
-   
-               <input th:each="language : ${languages}" type="radio" th:field="*{favouriteLanguage}" th:value="${language}" th:text="${language}">
-   
-               <br><br>
-   
+                <!-- ... -->   
                <input type="submit" value="Submit" />
            </form>
        </body>

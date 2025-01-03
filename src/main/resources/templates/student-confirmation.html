@@ -17,5 +17,12 @@
 
         Favourite Programming Language:  <span th:text="${bindingStudentObject.favouriteLanguage}"></span>
 
+        <br><br>
+
+        Favourite Operating Systems:
+        <ul>
+            <li th:each="system : ${bindingStudentObject.favouriteSystems}" th:text="${system}"></li>
+        </ul>
+
     </body>
 </html>

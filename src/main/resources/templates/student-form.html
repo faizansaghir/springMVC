@@ -31,6 +31,12 @@
 
             <br><br>
 
+            Favourite Operating Systems
+
+            <input type="checkbox" th:each="system : ${systems}" th:field="*{favouriteSystems}" th:value="${system}" th:text="${system}">
+
+            <br><br>
+
             <input type="submit" value="Submit" />
         </form>
     </body>
